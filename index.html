@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rumah Belajar Pengadaan Indonesia</title>
+  <meta name="description" content="Rumah Belajar Pengadaan Indonesia - Belajar Bersama Menuju Pengadaan Lebih Baik." />
+  <link rel="stylesheet" href="assets/style.css">
+  <style>.admin-bar{display:none!important}</style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Navigasi utama">
+      <div class="brand">
+        <div id="logoBox" class="logo" aria-hidden="true">RB</div>
+        <h1 id="siteTitle">Rumah Belajar Pengadaan Indonesia</h1>
+        <span class="chip hide-on-mobile">Sederhana & Mudah Dikelola</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#jadwal">Jadwal</a></li>
+          <li><a href="#artikel">Artikel</a></li>
+          <li><a href="#testimoni">Testimoni</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="themeBtn" class="btn" title="Tema terang/gelap">🌓 Tema</button>
+        <button id="loginBtn" class="btn" title="Masuk admin">🔐 Login</button>
+        <button id="logoutBtn" class="btn" title="Keluar" style="display:none">🚪 Logout</button>
+        <button id="adminBtn" class="btn admin-toggle" title="Buka panel admin">⚙️ Admin</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="announceBar" class="announce info" role="status" aria-live="polite">
+    <div class="container announce-inner">
+      <span id="announceMsg" class="msg"></span>
+      <button id="announceClose" class="btn" title="Sembunyikan pengumuman">Tutup</button>
+    </div>
+  </div>
+
+  <main id="beranda" class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="badge">Rumah Belajar Pengadaan Indonesia</div>
+          <h2 id="heroTitle">Belajar Bersama Menuju Pengadaan Lebih Baik</h2>
+          <p id="heroSubtitle" class="lead">Kelas online/offline, materi terstruktur, dan narasumber berpengalaman. Cocok untuk pemula hingga level mahir.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a id="ctaWhatsapp" class="btn primary" href="#" target="_blank" rel="noopener">💬 Tanya via WhatsApp</a>
+            <a href="#program" class="btn">📚 Lihat Program</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><div style="font-weight:800;font-size:22px" id="statAlumni">1.200+</div><div class="muted">Alumni</div></div>
+            <div class="stat"><div style="font-weight:800;font-size:22px" id="statKelas">35+</div><div class="muted">Topik Kelas</div></div>
+            <div class="stat"><div style="font-weight:800;font-size:22px" id="statKepuasan">4.8/5</div><div class="muted">Kepuasan</div></div>
+          </div>
+        </div>
+        <div class="hero-illus" aria-hidden="true">
+          <!-- Ilustrasi sederhana (SVG) -->
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#0ea5e9" />
+                <stop offset="100%" stop-color="#22d3ee" />
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="500" height="280" fill="url(#g1)" opacity="0.12" />
+            <g transform="translate(40,40)">
+              <rect x="0" y="0" width="420" height="200" rx="14" fill="var(--bg)" stroke="rgba(100,116,139,0.3)" />
+              <rect x="14" y="18" width="150" height="18" rx="6" fill="rgba(14,165,233,0.25)" />
+              <rect x="14" y="50" width="380" height="12" rx="5" fill="rgba(100,116,139,0.35)" />
+              <rect x="14" y="70" width="300" height="12" rx="5" fill="rgba(100,116,139,0.28)" />
+              <rect x="14" y="110" width="420" height="1" fill="rgba(100,116,139,0.35)" />
+              <rect x="14" y="130" width="180" height="38" rx="10" fill="#0ea5e9" opacity="0.8" />
+              <rect x="206" y="130" width="110" height="38" rx="10" fill="rgba(14,165,233,0.25)" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="section-title">
+        <h2>Program Pelatihan</h2>
+        <span class="muted">Topik populer dan dasar–lanjutan</span>
+      </div>
+      <div class="filters">
+        <input id="searchProgram" type="text" placeholder="Cari program..." />
+        <select id="filterMode">
+          <option value="">Semua Mode</option>
+          <option>Online</option>
+          <option>Offline</option>
+          <option>Hybrid</option>
+        </select>
+      </div>
+      <div id="programList" class="cards"></div>
+    </section>
+
+    <section id="jadwal">
+      <div class="section-title">
+        <h2>Jadwal Terdekat</h2>
+        <a id="downloadJadwal" class="btn" href="#">⬇️ Unduh CSV</a>
+      </div>
+      <div style="overflow:auto">
+        <table aria-label="Tabel jadwal pelatihan">
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Topik</th>
+              <th>Narasumber</th>
+              <th>Mode</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="jadwalBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="artikel">
+      <div class="section-title">
+        <h2>Artikel & Materi</h2>
+        <span class="muted">Bahan bacaan terkait pengadaan</span>
+      </div>
+      <div id="artikelList" class="list"></div>
+    </section>
+
+    <section id="testimoni">
+      <div class="section-title">
+        <h2>Testimoni Alumni</h2>
+        <span class="muted">Apa kata peserta</span>
+      </div>
+      <div id="testiList" class="testimonials"></div>
+    </section>
+
+    <section id="galeri">
+      <div class="section-title">
+        <h2>Galeri Kegiatan</h2>
+        <span class="muted">Dokumentasi singkat pelatihan</span>
+      </div>
+      <div id="galleryGrid" class="gallery-grid"></div>
+    </section>
+
+    <section id="faq">
+      <div class="section-title">
+        <h2>FAQ</h2>
+        <span class="muted">Pertanyaan yang sering ditanyakan</span>
+      </div>
+      <div class="cards" style="grid-template-columns:1fr">
+        <div class="card">
+          <details open>
+            <summary><strong>Apakah perlu server atau database?</strong></summary>
+            <p>Tak perlu. Data disimpan di browser admin (localStorage). Gunakan Export/Import JSON untuk cadangan dan sinkron antar perangkat.</p>
+          </details>
+          <details>
+            <summary><strong>Bagaimana cara pendaftaran peserta?</strong></summary>
+            <p>Gunakan tombol <em>Daftar via WA</em> di setiap program atau masukkan tautan Google Form/Typeform pada kolom <em>Link Pendaftaran</em>.</p>
+          </details>
+          <details>
+            <summary><strong>Bagaimana bila konten hilang?</strong></summary>
+            <p>Pastikan tidak menggunakan mode penyamaran. Lakukan Export Data setelah mengubah konten penting.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak">
+      <div class="section-title">
+        <h2>Kontak</h2>
+        <span class="muted">Kami siap membantu</span>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <h3>Alamat</h3>
+          <p id="addressText">Indonesia</p>
+        </div>
+        <div class="card">
+          <h3>Email</h3>
+          <p><a id="emailLink" href="mailto:rbpi.indonesia@gmail.com">rbpi.indonesia@gmail.com</a></p>
+        </div>
+        <div class="card">
+          <h3>WhatsApp</h3>
+          <p><a id="waLink" href="#" target="_blank" rel="noopener">+62 812‑3456‑7890</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+        <div>© <span id="year"></span> <strong id="footerTitle">Rumah Belajar Pengadaan Indonesia</strong>. All rights reserved.</div>
+        <div class="muted">Made simple for admin ✨</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Admin Floating Bar -->
+  <div class="admin-bar">
+    <button id="helpBtn" class="btn" title="Panduan Admin">❓ Panduan</button>
+    <button id="quickEditBtn" class="btn" title="Edit cepat teks">✏️ Edit Cepat</button>
+    <button id="openPanelBtn" class="btn primary" title="Panel Admin">⚙️ Panel</button>
+  </div>
+
+  <!-- Admin Panel -->
+  <aside id="adminPanel" class="panel" aria-label="Panel Admin">
+    <header style="display:flex;justify-content:space-between;align-items:center">
+      <strong>Panel Admin</strong>
+      <button id="closePanel" class="btn">Tutup</button>
+    </header>
+    <div class="content">
+      <div class="tabs" role="tablist">
+        <button class="active" data-tab="umum">Umum</button>
+        <button data-tab="pengumuman">Pengumuman</button>
+        <button data-tab="program">Program</button>
+        <button data-tab="jadwal">Jadwal</button>
+        <button data-tab="artikel">Artikel</button>
+        <button data-tab="testimoni">Testimoni</button>
+        <button data-tab="galeri">Galeri</button>
+        <button data-tab="tampilan">Tampilan</button>
+        <button data-tab="backup">Backup</button>
+      </div>
+
+      <!-- Tab Umum -->
+      <div class="tab" id="tab-umum">
+        <div class="field">
+          <label>Judul Situs</label>
+          <input id="inpTitle" type="text" placeholder="Nama situs" />
+        </div>
+        <div class="field">
+          <label>Tagline/Hero Title</label>
+          <input id="inpHeroTitle" type="text" placeholder="Judul hero" />
+        </div>
+        <div class="field">
+          <label>Deskripsi Singkat (hero subtitle)</label>
+          <textarea id="inpHeroSubtitle" rows="3" placeholder="Deskripsi di bagian atas"></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label>Nomor WhatsApp (contoh: 6281234567890)</label>
+            <input id="inpWA" type="tel" />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input id="inpEmail" type="email" />
+          </div>
+        </div>
+        <div class="field">
+          <label>Alamat</label>
+          <input id="inpAddress" type="text" />
+        </div>
+        <button id="saveUmum" class="btn primary">Simpan</button>
+      </div>
+
+      <!-- Tab Program -->
+      <div class="tab" id="tab-program" style="display:none">
+        <div class="item">
+          <header>
+            <strong>Tambah/Update Program</strong>
+          </header>
+          <div class="grid-2">
+            <div class="field"><label>Judul</label><input id="progTitle" type="text"></div>
+            <div class="field"><label>Mode</label>
+              <select id="progMode">
+                <option>Online</option>
+                <option>Offline</option>
+                <option>Hybrid</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>Durasi</label><input id="progDuration" type="text" placeholder="mis. 2 hari"></div>
+            <div class="field"><label>Harga</label><input id="progPrice" type="text" placeholder="mis. Rp750.000"></div>
+          </div>
+          <div class="field"><label>Deskripsi</label><textarea id="progDesc" rows="3"></textarea></div>
+          <div class="field"><label>Link Pendaftaran (opsional)</label><input id="progLink" type="url" placeholder="https://..."></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button id="addProgram" class="btn primary">Simpan Program</button>
+            <button id="resetProgram" class="btn">Reset Form</button>
+          </div>
+        </div>
+        <div class="items" id="programItems"></div>
+      </div>
+
+      <!-- Tab Jadwal -->
+      <div class="tab" id="tab-jadwal" style="display:none">
+        <div class="item">
+          <header><strong>Tambah Jadwal</strong></header>
+          <div class="grid-2">
+            <div class="field"><label>Tanggal</label><input id="schDate" type="date"></div>
+            <div class="field"><label>Mode</label>
+              <select id="schMode">
+                <option>Online</option>
+                <option>Offline</option>
+                <option>Hybrid</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>Topik</label><input id="schTopic" type="text"></div>
+            <div class="field"><label>Narasumber</label><input id="schTrainer" type="text"></div>
+          </div>
+          <div class="field"><label>Link Pendaftaran (opsional)</label><input id="schLink" type="url" placeholder="https://..."></div>
+          <button id="addSchedule" class="btn primary">Simpan Jadwal</button>
+        </div>
+        <div class="items" id="scheduleItems"></div>
+      </div>
+
+      <!-- Tab Artikel -->
+      <div class="tab" id="tab-artikel" style="display:none">
+        <div class="item">
+          <header><strong>Tambah Artikel</strong></header>
+          <div class="field"><label>Judul</label><input id="artTitle" type="text"></div>
+          <div class="field"><label>URL</label><input id="artUrl" type="url" placeholder="https://..."></div>
+          <button id="addArticle" class="btn primary">Simpan Artikel</button>
+        </div>
+        <div class="items" id="articleItems"></div>
+      </div>
+
+      <!-- Tab Pengumuman -->
+      <div class="tab" id="tab-pengumuman" style="display:none">
+        <div class="field"><label><input id="annEnabled" type="checkbox" checked> Tampilkan pengumuman</label></div>
+        <div class="field"><label>Isi Pengumuman</label><input id="annText" type="text" placeholder="Contoh: Pendaftaran batch September dibuka!"></div>
+        <div class="field"><label>Gaya</label>
+          <select id="annStyle">
+            <option value="info">Info (biru)</option>
+            <option value="success">Sukses (hijau)</option>
+            <option value="warn">Peringatan (kuning)</option>
+            <option value="alert">Mendesak (merah)</option>
+          </select>
+        </div>
+        <button id="saveAnn" class="btn primary">Simpan Pengumuman</button>
+      </div>
+
+      <!-- Tab Testimoni -->
+      <div class="tab" id="tab-testimoni" style="display:none">
+        <div class="item">
+          <header><strong>Tambah Testimoni</strong></header>
+          <div class="grid-2">
+            <div class="field"><label>Nama</label><input id="tesName" type="text"></div>
+            <div class="field"><label>Peran/Instansi</label><input id="tesRole" type="text" placeholder="PPK - Pemda X"></div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>Rating</label>
+              <select id="tesRating">
+                <option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option>
+              </select>
+            </div>
+            <div class="field"><label>Foto (URL, opsional)</label><input id="tesPhoto" type="url" placeholder="https://..."></div>
+          </div>
+          <div class="field"><label>Pesan</label><textarea id="tesText" rows="3" placeholder="Komentar alumni"></textarea></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap"><button id="addTesti" class="btn primary">Simpan Testimoni</button></div>
+        </div>
+        <div class="items" id="testiItems"></div>
+      </div>
+
+      <!-- Tab Galeri -->
+      <div class="tab" id="tab-galeri" style="display:none">
+        <div class="item">
+          <header><strong>Tambah Foto Galeri</strong></header>
+          <div class="field"><label>URL Gambar</label><input id="galUrl" type="url" placeholder="https://..."></div>
+          <div class="field"><label>Keterangan (opsional)</label><input id="galCaption" type="text"></div>
+          <button id="addGallery" class="btn primary">Simpan Foto</button>
+        </div>
+        <div class="items" id="galleryItems"></div>
+      </div>
+
+      <!-- Tab Tampilan -->
+      <div class="tab" id="tab-tampilan" style="display:none">
+        <div class="grid-2">
+          <div class="field">
+            <label>Warna Utama</label>
+            <input id="inpColor" type="color" value="#0ea5e9">
+          </div>
+          <div class="field">
+            <label>Tema</label>
+            <select id="inpTheme">
+              <option value="light">Terang</option>
+              <option value="dark">Gelap</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Logo (opsional, file kecil < 300KB)</label>
+          <input id="inpLogo" type="file" accept="image/*">
+        </div>
+        <button id="saveAppearance" class="btn primary">Simpan Tampilan</button>
+      </div>
+
+      <!-- Tab Backup -->
+      <div class="tab" id="tab-backup" style="display:none">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button id="btnExport" class="btn">⬇️ Export Data (JSON)</button>
+          <label class="btn">
+            ⬆️ Import Data
+            <input id="fileImport" type="file" accept="application/json" style="display:none">
+          </label>
+          <button id="btnReset" class="btn danger">♻️ Reset ke Default</button>
+        </div>
+        <p class="muted">Tips: rutin export sebagai cadangan. Import untuk pindah perangkat/hosting.</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Panduan Modal -->
+  <aside id="helpModal" class="panel" style="width:min(560px,96vw)" aria-label="Panduan Admin">
+    <header style="display:flex;justify-content:space-between;align-items:center">
+      <strong>Panduan Admin (1 menit)</strong>
+      <button id="closeHelp" class="btn">Tutup</button>
+    </header>
+    <div class="content">
+      <ol style="margin:0 0 6px 18px;display:grid;gap:6px">
+        <li>Klik <strong>⚙️ Panel</strong> (pojok kanan bawah).</li>
+        <li>Isi data di tab <strong>Umum</strong> (judul, WA, email, alamat). Lalu tekan <em>Simpan</em>.</li>
+        <li>Tambahkan <strong>Program</strong>, <strong>Jadwal</strong>, dan <strong>Artikel</strong> sesuai kebutuhan.</li>
+        <li>Atur <strong>warna utama</strong> dan <strong>tema</strong> di tab <strong>Tampilan</strong>.</li>
+        <li>Tekan <strong>Export Data</strong> untuk backup. Import lagi kapan pun.</li>
+      </ol>
+      <p class="muted">Semua data tersimpan di perangkat (localStorage). Untuk online, cukup upload file HTML ini ke hosting apa saja (mis. GitHub Pages/Netlify/Shared Hosting).</p>
+    </div>
+  </aside>
+
+  <!-- Modal Pratinjau Gambar -->
+  <aside id="imgModal" class="panel" aria-label="Pratinjau Gambar">
+    <header style="display:flex;justify-content:space-between;align-items:center">
+      <strong>Pratinjau Gambar</strong>
+      <button id="imgClose" class="btn">Tutup</button>
+    </header>
+    <div class="content">
+      <img id="imgPreview" alt="Pratinjau" style="width:100%;border-radius:12px;border:1px solid rgba(100,116,139,0.2)" />
+    </div>
+  </aside>
+
+  <!-- Modal Pendaftaran Cepat -->
+  <aside id="enrollModal" class="panel" aria-label="Pendaftaran Cepat">
+    <header style="display:flex;justify-content:space-between;align-items:center">
+      <strong>Pendaftaran Cepat</strong>
+      <button id="enrollClose" class="btn">Tutup</button>
+    </header>
+    <div class="content">
+      <div class="field"><label>Nama</label><input id="enrollName" type="text" placeholder="Nama peserta"></div>
+      <div class="field"><label>Instansi/Unit</label><input id="enrollOrg" type="text" placeholder="Instansi/Unit"></div>
+      <div class="field"><label>Pilih Program</label><select id="enrollProgram"></select></div>
+      <button id="enrollSend" class="btn primary">Kirim via WhatsApp</button>
+    </div>
+  </aside>
+
+  <script defer src="assets/app.js"></script>
+  <script type="module" src="assets/firebase-auth-init.js"></script>
+  <script defer src="assets/ugc-addon.js"></script>
+</body>
+</html>
